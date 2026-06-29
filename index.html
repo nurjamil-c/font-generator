@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦ Premium Font Generator - Teks Estetik & Keren ✦</title>
+    <style>
+        :root {
+            --primary: #ff7675;
+            --secondary: #6c5ce7;
+            --dark: #1e272e;
+            --card-bg: #2f3542;
+            --light: #f1f2f6;
+            --success: #2ed573;
+            --accent: #00cec9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: '-apple-system', BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #11141a;
+            color: var(--light);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 80px; /* Jarak ekstra agar konten tidak tertutup iklan melayang */
+        }
+
+        .app-card {
+            width: 100%;
+            max-width: 480px;
+            background: #1a1e29;
+            border: 1px solid #2d3446;
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00cec9, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 11px;
+            color: #57606f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* LAYOUT IKLAN UMUM */
+        .ad-banner-top, .ad-banner-middle, .ad-banner-inline {
+            width: 100%;
+            background: #222736;
+            border: 1px dashed #3e445b;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            font-size: 11px;
+            color: #747d8c;
+            margin-bottom: 20px;
+        }
+
+        .ad-banner-inline {
+            margin: 10px 0;
+            background: #1c2130;
+        }
+
+        /* IKLAN MELAYANG BARU (STICKY BOTTOM) */
+        .ad-sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: #1e2432;
+            border-top: 2px solid var(--accent);
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            color: #a4b0be;
+            z-index: 9999;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+        }
+
+        .input-box-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .input-box-wrapper label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 2px solid #2d3446;
+            border-radius: 12px;
+            outline: none;
+            background: #0f121a;
+            color: #fff;
+            font-weight: 600;
+            transition: all 0.3s;
+            caret-color: var(--accent);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(0, 206, 201, 0.2);
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+            font-weight: 500;
+        }
+
+        /* LIVE PREVIEW MULTIPLATFORM ALAMI */
+        .preview-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #a4b0be;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-mockup {
+            background: linear-gradient(135deg, #2c3e50, #000000);
+            border-radius: 14px;
+            padding: 14px;
+            position: relative;
+            border: 1px solid #34495e;
+            overflow: hidden;
+        }
+
+        .profile-mockup.before::after {
+            content: '❌ TEKS BIASA';
+            position: absolute;
+            top: 0; right: 0;
+            background: #ff5252;
+            font-size: 9px; font-weight: bold;
+            padding: 4px 8px; border-bottom-left-radius: 8px;
+        }
+
+        .profile-mockup.after {
+            background: linear-gradient(135deg, #1e1b4b, #000000);
+            border: 1px solid #4338ca;
+        }
+
+        .profile-mockup.after::after {
+            content: '🔥 HASIL ESTETIK';
+            position: absolute;
+            top: 0; right: 0;
+            background: #2ed573;
+            font-size: 9px; font-weight: bold;
+            padding: 4px 8px; border-bottom-left-radius: 8px;
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-circle {
+            width: 42px;
+            height: 42px;
+            background: #6c5ce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .display-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .sub-status {
+            font-size: 11px;
+            color: #747d8c;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .font-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .font-card {
+            background: #1f2432;
+            border: 1px solid #2b3145;
+            padding: 12px 14px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .font-card.viral-tag {
+            border-color: var(--accent);
+            background: linear-gradient(90deg, #1f2432 0%, #152c2c 100%);
+            position: relative;
+        }
+
+        .font-card.viral-tag::before {
+            content: '⭐ TERPOPULER';
+            position: absolute;
+            top: -7px; left: 10px;
+            background: var(--accent);
+            color: #000;
+            font-size: 7px;
+            font-weight: 900;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .font-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            width: 75%;
+        }
+
+        .font-label {
+            font-size: 8px;
+            font-weight: bold;
+            color: #747d8c;
+        }
+
+        .font-output {
+            font-size: 15px;
+            color: #fff;
+            word-break: break-all;
+        }
+
+        .btn-copy {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-copy:active {
+            transform: scale(0.95);
+        }
+
+        .share-container {
+            margin-top: 20px;
+            text-align: center;
+            background: #11141a;
+            border: 1px solid #2d3446;
+            padding: 14px;
+            border-radius: 14px;
+        }
+
+        .share-container p {
+            font-size: 11px;
+            color: #a4b0be;
+            margin-bottom: 8px;
+        }
+
+        .btn-whatsapp {
+            background: var(--success);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        #hiddenClipboard { position: absolute; left: -9999px; top: -9999px; }
+
+        .toast-notif {
+            position: fixed;
+            bottom: 80px; /* Disesuaikan agar muncul di atas iklan melayang */
+            background: var(--accent);
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: none;
+            z-index: 99999;
+            box-shadow: 0 5px 15px rgba(0,206,201,0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-card">
+        <div class="header">
+            <h1>✦ Premium Font Generator ✦</h1>
+            <p>Salin Teks Keren untuk Bio Sosmed, Chat, & Nickname Game</p>
+        </div>
+
+        <div class="ad-banner-top">
+            [ PLACE ADS - BANNER PREMIUM ATAS 320x50 ]
+        </div>
+
+        <div class="input-box-wrapper">
+            <label for="inputText">Masukkan Kata atau Nama:</label>
+            <input type="text" id="inputText" placeholder="Ketik kata atau nama di sini..." autofocus>
+        </div>
+
+        <span class="preview-title">👁️ Live Preview Tampilan:</span>
+        <div class="comparison-container">
+            <div class="profile-mockup before">
+                <div class="profile-row">
+                    <div class="avatar-circle" style="background:#57606f;">✨</div>
+                    <div class="profile-info">
+                        <div class="display-name" id="previewBefore" style="color: #a4b0be;">...</div>
+                        <div class="sub-status">Format Teks Standar</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-mockup after">
+                <div class="profile-row">
+                    <div class="avatar-circle">👑</div>
+                    <div class="profile-info">
+                        <div class="display-name" id="previewAfter" style="color:var(--accent);">Loading...</div>
+                        <div class="sub-status" style="color:#a4b0be;">Siap Copas ke WA, IG, TikTok & Game</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-banner-middle">
+            [ PLACE ADS - NATIVE BANNER TENGAH ]
+        </div>
+
+        <div class="section-title">🔥 Pilihan Font Gaya Premium (Sekali Klik):</div>
+        
+        <div class="font-list" id="fontList">
+            </div>
+
+        <div class="share-container">
+            <p>Bikin profil teman-temanmu jadi makin estetik? Bagikan web ini!</p>
+            <a href="#" id="shareWA" class="btn-whatsapp" target="_blank">🟢 Bagikan ke WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="ad-sticky-bottom">
+        [ PLACE ADS - STICKY BOTTOM MOBILE 320x50 ]
+    </div>
+
+    <textarea id="hiddenClipboard"></textarea>
+    <div class="toast-notif" id="toast">✅ Teks Estetik Berhasil Disalin!</div>
+
+    <script>
+        const inputText = document.getElementById('inputText');
+        const fontList = document.getElementById('fontList');
+        const previewBefore = document.getElementById('previewBefore');
+        const previewAfter = document.getElementById('previewAfter');
+        const shareWA = document.getElementById('shareWA');
+        const toast = document.getElementById('toast');
+        const hiddenClipboard = document.getElementById('hiddenClipboard');
+
+        const alphabetMaps = {
+            bubble: { 'A': 'Ⓐ', 'B': 'Ⓑ', 'C': 'Ⓒ', 'D': 'Ⓓ', 'E': 'Ⓔ', 'F': 'Ⓕ', 'G': 'Ⓖ', 'H': 'Ⓗ', 'I': 'Ⓘ', 'J': 'Ⓙ', 'K': 'Ⓚ', 'L': 'Ⓛ', 'M': 'Ⓜ', 'N': 'Ⓝ', 'O': 'Ⓞ', 'P': 'Ⓟ', 'Q': 'Ⓠ', 'R': 'Ⓡ', 'S': 'Ⓢ', 'T': 'Ⓣ', 'U': 'Ⓤ', 'V': 'Ⓥ', 'W': 'Ⓦ', 'X': 'Ⓧ', 'Y': 'Ⓨ', 'Z': 'Ⓩ', 'a': 'ⓐ', 'b': 'ⓑ', 'c': 'ⓒ', 'd': 'ⓓ', 'e': 'e', 'f': 'ⓕ', 'g': 'ⓖ', 'h': 'ⓗ', 'i': 'ⓘ', 'j': 'ⓙ', 'k': 'ⓚ', 'l': 'ⓛ', 'm': 'ⓜ', 'n': 'ⓝ', 'o': 'ⓞ', 'p': 'ⓟ', 'q': 'ⓠ', 'r': 'ⓡ', 's': 'ⓢ', 't': 'ⓣ', 'u': 'u', 'v': 'ⓥ', 'w': 'ⓦ', 'x': 'ⓧ', 'y': 'ⓨ', 'z': 'ⓩ' },
+            japan: { 'A': 'Ａ', 'B': 'Ｂ', 'C': 'Ｃ', 'D': 'Ｄ', 'E': 'Ｅ', 'F': 'Ｆ', 'G': 'Ｇ', 'H': 'Ｈ', 'I': 'Ｉ', 'J': 'Ｊ', 'K': 'Ｋ', 'L': 'Ｌ', 'M': 'Ｍ', 'N': 'Ｎ', 'O': 'Ｏ', 'P': 'Ｐ', 'Q': 'Ｑ', 'R': 'Ｒ', 'S': 'Ｓ', 'T': 'Ｔ', 'U': 'Ｕ', 'V': 'Ｖ', 'W': 'Ｗ', 'X': 'Ｘ', 'Y': 'Ｙ', 'Z': 'Ｚ', 'a': 'ａ', 'b': 'ｂ', 'c': 'ｃ', 'd': 'ｄ', 'e': 'ｅ', 'f': 'ｆ', 'g': 'ｇ', 'h': 'ｈ', 'i': 'ｉ', 'j': 'ｊ', 'k': 'ｋ', 'l': 'ｌ', 'm': 'ｍ', 'n': 'ｎ', 'o': 'ｏ', 'p': 'ｐ', 'q': 'ｑ', 'r': 'ｒ', 's': 'ｓ', 't': 'ｔ', 'u': 'ｕ', 'v': 'ｖ', 'w': 'ｗ', 'x': 'ｘ', 'y': 'ｙ', 'z': 'ｚ' },
+            sultan: { 'A': '𝔸', 'B': '𝔹', 'C': 'ℂ', 'D': '𝔻', 'E': '𝔼', 'F': '𝔽', 'G': '𝔾', 'H': 'ℍ', 'I': '𝕀', 'J': '𝕁', 'K': '𝕂', 'L': '𝕃', 'M': '𝕄', 'N': 'ℕ', 'O': '𝕆', 'P': 'ℙ', 'Q': 'ℚ', 'R': 'ℝ', 'S': '𝕊', 'T': '𝕋', 'U': '𝕌', 'V': '𝕍', 'W': '𝕎', 'X': '𝕏', 'Y': '𝕐', 'Z': 'ℤ', 'a': '𝕒', 'b': '𝕓', 'c': '𝕔', 'd': '𝕕', 'e': '𝕖', 'f': '𝕗', 'g': '𝕘', 'h': '𝕙', 'i': '𝕚', 'j': '𝕛', 'k': '𝕜', 'l': '𝕝', 'm': '𝕞', 'n': '𝕟', 'o': '𝕠', 'p': '𝕡', 'q': '𝕢', 'r': '𝕣', 's': '𝕤', 't': '𝕥', 'u': '𝕦', 'v': '𝕧', 'w': '𝕛', 'x': '𝕩', 'y': '𝕪', 'z': '𝕫' },
+            gothic: { 'A': '𝔄', 'B': '𝔅', 'C': '𝔍', 'D': '𝔇', 'E': '𝔈', 'F': '𝔉', 'G': '𝔊', 'H': 'cache', 'I': 'ℑ', 'J': '𝔍', 'K': '𝔎', 'L': '𝔏', 'M': '𝔐', 'N': '𝔝', 'O': '𝔒', 'P': '𝔓', 'Q': '𝔔', 'R': '𝔛', 'S': '𝔖', 'T': '𝔗', 'U': '𝔘', 'V': '𝔙', 'W': '𝔚', 'X': '𝔛', 'Y': '𝔜', 'Z': '𝔝', 'a': '𝔞', 'b': '𝔟', 'c': '𝔠', 'd': '𝔡', 'e': '𝔢', 'f': '𝔣', 'g': '𝔧', 'h': '𝔨', 'i': '𝔦', 'j': '𝔟', 'k': '𝔨', 'l': '𝔩', 'm': '𝔪', 'n': '𝔫', 'o': '𝔬', 'p': '𝔭', 'q': '𝔮', 'r': '𝔯', 's': '𝔰', 't': '𝔱', 'u': '𝔲', 'v': '𝔳', 'w': '𝔴', 'x': '𝔵', 'y': '𝔶', 'z': '𝔷' },
+            cursive: { 'A': '𝒜', 'B': 'ℬ', 'C': '𝒞', 'D': '𝒟', 'E': 'ℰ', 'F': 'ℱ', 'G': '𝒢', 'H': 'ℋ', 'I': 'ℐ', 'J': '𝒥', 'K': '𝒦', 'L': 'ℒ', 'M': 'ℳ', 'N': '𝒩', 'O': '𝒪', 'P': '𝒫', 'Q': '𝒬', 'R': 'ℛ', 'S': '𝒮', 'T': '𝒯', 'U': '𝒰', 'V': '𝒱', 'W': '𝒲', 'X': '𝒳', 'Y': '𝒴', 'Z': '𝒵', 'a': '𝒶', 'b': '𝒷', 'c': 'clr', 'd': '𝒹', 'e': '𝑒', 'f': '𝒻', 'g': '𝑔', 'h': '𝒽', 'i': '𝒾', 'j': '𝒿', 'k': '𝓀', 'l': '𝓁', 'm': '𝓂', 'n': '𝓃', 'o': 'ignored', 'p': '𝓅', 'q': '𝓆', 'r': '𝓇', 's': '𝓈', 't': '𝕥', 'u': '𝓊', 'v': '𝓋', 'w': '𝓌', 'x': '𝓍', 'y': '𝓎', 'z': '𝓏' },
+            bolditalic: { 'A': '𝑨', 'B': '𝑩', 'C': '𝑪', 'D': '𝑫', 'E': '𝑬', 'F': '𝑭', 'G': '𝑮', 'H': '𝑯', 'I': '𝑰', 'J': '𝑱', 'K': '𝑲', 'L': '𝑳', 'M': '𝑴', 'N': '𝑵', 'O': '𝑶', 'P': '𝑷', 'Q': '𝑸', 'R': '𝑹', 'S': '𝑺', 'T': '𝑻', 'U': '𝑼', 'V': '𝑽', 'W': '𝑾', 'X': '𝑿', 'Y': '𝒀', 'Z': '𝒁', 'a': '𝒂', 'b': '𝒃', 'c': '𝒄', 'd': '𝒅', 'e': '𝒆', 'f': '𝒇', 'g': '𝒈', 'h': '𝒉', 'i': '𝒊', 'j': '𝒋', 'k': '𝒌', 'l': '𝒍', 'm': '𝒎', 'n': '𝒏', 'o': '𝒐', 'p': '𝒑', 'q': '𝒒', 'r': '𝒓', 's': '𝒔', 't': '𝒕', 'u': '𝒖', 'v': '𝒗', 'w': '𝒘', 'x': '𝒙', 'y': '𝒚', 'z': '𝒛' },
+            mono: { 'A': '𝙹', 'B': '𝙱', 'C': '𝙲', 'D': '𝙳', 'E': '𝙴', 'F': '𝙵', 'G': '𝙶', 'H': '𝙷', 'I': '𝙸', 'J': '𝙹', 'K': '𝙺', 'L': '𝙻', 'M': '𝙼', 'N': '𝙽', 'O': '𝙾', 'P': '𝙿', 'Q': '𝚀', 'R': '𝚁', 'S': '𝚂', 'T': '𝚃', 'U': '𝚄', 'V': '𝚅', 'W': ' ڈ', 'X': '𝚇', 'Y': '𝚈', 'Z': '𝚉', 'a': '𝚓', 'b': '𝚋', 'c': '𝚌', 'd': '𝚍', 'e': '𝚎', 'f': 'init', 'g': '𝚐', 'h': '𝚑', 'i': '𝚒', 'j': '<b>', 'k': '𝚔', 'l': '𝚕', 'm': '𝚖', 'n': '𝚗', 'o': '𝚘', 'p': '𝚙', 'q': '𝚚', 'r': '𝚛', 's': '𝚜', 't': '𝕥', 'u': '𝚞', 'v': '𝚟', 'w': '𝚠', 'x': '𝚡', 'y': '𝚢', 'z': '𝚣' },
+            flip: { 'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ', 'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': 'l', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd', 'q': 'b', 'r': 'ɹ', 's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x', 'y': 'ʎ', 'z': 'z', 'A': '∀', 'B': '𐐘', 'C': 'Ɔ', 'D': '◖', 'E': 'Ǝ', 'F': 'Ⅎ', 'G': '⅁', 'H': 'H', 'I': 'I', 'J': 'ſ', 'K': 'ʞ', 'L': '˥', 'M': 'W', 'N': 'N', 'O': 'O', 'P': 'Ԁ', 'Q': 'Ό', 'R': 'ᴚ', 'S': 'S', 'T': '┴', 'U': '∩', 'V': 'Λ', 'W': 'M', 'X': 'X', 'Y': '⅄', 'Z': 'Z' }
+        };
+
+        function convertText(text, mapType) {
+            let res = '';
+            if (mapType === 'flip') {
+                for(let i = text.length - 1; i >= 0; i--) {
+                    res += alphabetMaps[mapType][text[i]] || text[i];
+                }
+            } else {
+                for(let i=0; i<text.length; i++) {
+                    res += alphabetMaps[mapType][text[i]] || text[i];
+                }
+            }
+            return res;
+        }
+
+        function renderStyles(rawText) {
+            fontList.innerHTML = '';
+            const safeText = rawText.trim() || "Nama";
+
+            previewBefore.innerText = rawText.trim() || "...";
+
+            const txtJapan = convertText(safeText, 'japan');
+            const txtBubble = convertText(safeText, 'bubble');
+            const txtSultan = convertText(safeText, 'sultan');
+            const txtGothic = convertText(safeText, 'gothic');
+            const txtCursive = convertText(safeText, 'cursive');
+            const txtFlip = convertText(safeText, 'flip');
+            const txtBoldItalic = convertText(safeText, 'bolditalic');
+            const txtMono = convertText(safeText, 'mono');
+
+            const customStyles = [
+                { name: "Simbol Payung Jepang ☂️ (Paling Dicari)", format: `乂 ${txtJapan} ☂️`, isViral: true },
+                { name: "Sultan Kerajaan Klasik Gothic 𝔖𝔱𝔶𝔩𝔢", format: `☠︎ ${txtGothic} ☠︎`, isViral: true },
+                { name: "Aesthetic Cursive Tulis Tangan ℒℴ𝓋ℯ", format: `☁️ ${txtCursive} ☁️`, isViral: true },
+                { name: "Gaya Teks Terbalik Unik (Anti Mainstream)", format: `(╯°□°）╯ ${txtFlip}`, isViral: true },
+                { name: "Model Sultan Premium Simbol ☬", format: `꧁ঔৣ☬ ${txtSultan} ☬ঔৣ꧂`, isViral: false },
+                { name: "Serif Tebal Miring Elegan 𝑩𝒐𝒍𝒅", format: `【 ${txtBoldItalic} 】`, isViral: false },
+                { name: "Gaya Developer / Monospace Modern", format: `⎔ ⟨${txtMono}⟩ ⎔`, isViral: false },
+                { name: "Bingkai Minimalis Jepang 〖〗", format: `〖 ${txtJapan} 〗`, isViral: false },
+                { name: "Teks Bulat Tebal Hitam", format: `🅅🄽 【${txtBubble}】`, isViral: false },
+                { name: "Format Spasi Estetik Jepang ツ", format: `${safeText} ㅤツ`, isViral: false }
+            ];
+
+            previewAfter.innerText = customStyles[0].format;
+
+            customStyles.forEach((style, index) => {
+                const card = document.createElement('div');
+                card.className = style.isViral ? 'font-card viral-tag' : 'font-card';
+                card.innerHTML = `
+                    <div class="font-info">
+                        <span class="font-label">${style.name}</span>
+                        <span class="font-output">${style.format}</span>
+                    </div>
+                    <button class="btn-copy" onclick="doCopy('${style.format}')">Salin</button>
+                `;
+                fontList.appendChild(card);
+
+                // REKLAME IKLAN BARU: INLINE ADS BANNER (Diselipkan di tengah daftar font hasil generatif)
+                if (index === 6) { 
+                    const inlineAd = document.createElement('div');
+                    inlineAd.className = 'ad-banner-inline';
+                    inlineAd.innerHTML = '[ PLACE ADS - INLINE NATIVE BANNER LIST ]';
+                    fontList.appendChild(inlineAd);
+                }
+            });
+
+            const webUrl = window.location.href;
+            shareWA.href = `https://api.whatsapp.com/send?text=` + encodeURIComponent(`Keren parah! Teks bio sosmed atau nama akunmu bisa langsung berubah jadi estetik dalam 1 detik tanpa aplikasi. Coba gratis di sini: ` + webUrl);
+        }
+
+        function doCopy(textToCopy) {
+            hiddenClipboard.value = textToCopy;
+            hiddenClipboard.select();
+            hiddenClipboard.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        }
+
+        inputText.addEventListener('input', (e) => renderStyles(e.target.value));
+        renderStyles("");
+    </script>
+</body>
+</html>
